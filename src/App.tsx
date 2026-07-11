@@ -5,7 +5,11 @@ import { toPng } from "html-to-image";
 function App() {
   const [text, setText] = useState("");
   const downloadQR = () => {
-    toPng(document.getElementById("qr")).then((dataUrl) => {
+    const element = document.getElementById("qr");
+
+    if (!element) return;
+
+    toPng(element).then((dataUrl) => {
       const link = document.createElement("a");
       link.download = "QRCode.png";
       link.href = dataUrl;
